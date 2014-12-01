@@ -1,0 +1,30 @@
+{
+  "status": 0,
+  "value": {
+    "supportedApps": [
+      {
+        "appId": "io.selendroid.androiddriver:0.12.0",
+        "mainActivity": "io.selendroid.androiddriver.WebViewActivity",
+        "basePackage": "io.selendroid.androiddriver"
+      }
+    ],
+    "os": {
+      "arch": "x86",
+      "name": "Windows 7",
+      "version": "6.1"
+    },
+    "build": {
+      "browserName": "selendroid",
+      "version": "0.12.0"
+    },
+    "supportedDevices": [
+      {
+        "screenSize": "(480, 800)",
+        "platformVersion": "15",
+        "model": "HTC One V",
+        "emulator": false,
+        "serial": "SH29KTV05119"
+      }
+    ]
+  }
+}

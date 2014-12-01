@@ -1,0 +1,1 @@
+java -jar -deviceScreenshot selendroid-standalone-0.12.0-with-dependencies.jar
