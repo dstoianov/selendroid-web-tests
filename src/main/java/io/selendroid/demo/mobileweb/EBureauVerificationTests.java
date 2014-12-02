@@ -27,9 +27,12 @@ public class EBureauVerificationTests {
             driver.quit();
         }
     }
-
+//http://automated-testing.info/t/kak-podklyuchit-android-or-ios-device-po-wi-fi-k-grid-hub-non-localhost/4737
 // connect to USB Device
 //adb devices -> "List of devices attached"
+    //adb shell ip -f inet addr show wlan0
+    // adb tcpip 5555
+    // adb connect <IP>
 
     @Test
     public void testNameRemote() throws Exception {
