@@ -11,11 +11,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.File;
 import java.io.IOException;
 
-
-/**
- * Created by Denis Stoianov on 10/07/2014, 4:22 PM
- * E-mail: denis@revimedia.com
- */
 public class EBureauVerificationTests {
 
     public static WebDriver driver;

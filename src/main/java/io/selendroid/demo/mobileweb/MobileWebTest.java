@@ -13,78 +13,41 @@
  */
 package io.selendroid.demo.mobileweb;
 
-import io.selendroid.SelendroidCapabilities;
-import io.selendroid.SelendroidConfiguration;
-import io.selendroid.SelendroidDriver;
-import io.selendroid.SelendroidLauncher;
-import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
-public class MobileWebTest {
-    private SelendroidLauncher selendroidServer = null;
-    private WebDriver driver = null;
+public class MobileWebTest extends BaseTest {
 
     @Test
     public void shouldSearchWithEbay() {
         // And now use this to visit ebay
         driver.get("http://m.ebay.de");
-
         // Find the text input element by its id
         WebElement element = driver.findElement(By.id("kw"));
-
         // Enter something to search for
         element.sendKeys("Nexus 5 32");
-
         // Now submit the form. WebDriver will find the form for us from the element
         element.submit();
-
         takeScreenshot();
-
         // Check the title of the page
         System.out.println("Page title is: " + driver.getTitle());
         driver.quit();
     }
 
-    @Before
-    public void startSelendroidServer() throws Exception {
-        if (selendroidServer != null) {
-            selendroidServer.stopSelendroid();
-        }
-        SelendroidConfiguration config = new SelendroidConfiguration();
+    @Test
+    public void rozetkaTest() {
+        driver.get("http://m.rozetka.ua/");
 
-        selendroidServer = new SelendroidLauncher(config);
-        selendroidServer.launchSelendroid();
+        WebElement search = driver.findElement(By.cssSelector(".f-search-text"));
+        search.sendKeys("nexus 5");
 
-        DesiredCapabilities caps = SelendroidCapabilities.android();
+        WebElement buttonSearch = driver.findElement(By.cssSelector(".f-search-submit-wrap"));
+        buttonSearch.click();
 
-        driver = new SelendroidDriver(caps);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    @After
-    public void stopSelendroidServer() {
-        if (driver != null) {
-            driver.quit();
-        }
-        if (selendroidServer != null) {
-            selendroidServer.stopSelendroid();
-        }
-    }
-
-    private void takeScreenshot() {
-        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(scrFile, new File("target" + File.separator + "screens-selendroid" + File.separator + "screenshot-" + System.currentTimeMillis() + ".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<WebElement> elements = driver.findElements(By.cssSelector("#items section"));
+        elements.get(0).click();
     }
 }
